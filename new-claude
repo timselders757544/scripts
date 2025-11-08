@@ -1,0 +1,4 @@
+#!/bin/zsh
+# Start nieuwe Claude Code sessie in tmux
+
+cd $DEV_HOME && /usr/local/bin/tmux new-session -s claude-code-$(date +%s) -c $DEV_HOME /usr/local/bin/node /usr/local/lib/node_modules/@anthropic-ai/claude-code/cli.js

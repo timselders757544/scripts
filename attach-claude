@@ -1,0 +1,4 @@
+#!/bin/zsh
+# Sluit aan bij bestaande Claude Code tmux sessie
+
+/usr/local/bin/tmux attach -t claude-code
