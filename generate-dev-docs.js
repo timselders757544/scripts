@@ -489,6 +489,42 @@ const htmlContent = `<!DOCTYPE html>
             opacity: 0.6;
             cursor: not-allowed;
         }
+
+        /* Hamburger Menu */
+        .hamburger-menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 7px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            z-index: 1000;
+        }
+
+        .hamburger-menu.active {
+            display: block;
+        }
+
+        .menu-item {
+            display: block;
+            padding: 14px 20px;
+            font-size: 14px;
+            font-weight: 400;
+            color: #000000;
+            text-decoration: none;
+            border-bottom: 1px solid #F4F4F4;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item:hover {
+            background: #F9F9F9;
+        }
     </style>
 </head>
 <body>
@@ -498,6 +534,16 @@ const htmlContent = `<!DOCTYPE html>
             <div class="topbar-title">
                 <span class="topbar-title-main">📚 Development Docs</span>
             </div>
+            <button class="topbar-hamburger" aria-label="Menu" onclick="toggleMenu(event)">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Hamburger Menu -->
+        <div id="hamburger-menu" class="hamburger-menu">
+            <a href="http://macmini" class="menu-item">📱 MacMini Apps</a>
         </div>
 
         <!-- AI Summary Hero -->
@@ -562,6 +608,23 @@ const htmlContent = `<!DOCTYPE html>
             const firstCard = document.querySelector('.readme-card');
             if (firstCard) {
                 firstCard.classList.add('expanded');
+            }
+        });
+
+        // Hamburger menu toggle
+        function toggleMenu(event) {
+            event.stopPropagation();
+            const menu = document.getElementById('hamburger-menu');
+            menu.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('hamburger-menu');
+            const hamburger = document.querySelector('.topbar-hamburger');
+
+            if (menu && !menu.contains(event.target) && event.target !== hamburger && !hamburger.contains(event.target)) {
+                menu.classList.remove('active');
             }
         });
     </script>
