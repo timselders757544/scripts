@@ -52,6 +52,9 @@ function findReadmeFiles(dir, fileList = []) {
       findReadmeFiles(filePath, fileList);
     } else if (file.match(/^README.*\.(md|txt)$/i)) {
       fileList.push(filePath);
+    } else if (dir.includes('claude-code-cloud') && file.match(/\.(md)$/i) && !file.match(/^CCC-v/)) {
+      // Include all .md files in claude-code-cloud folder (except old CCC-vX.X versions)
+      fileList.push(filePath);
     }
   });
 
